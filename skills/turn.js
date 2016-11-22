@@ -3,7 +3,7 @@ module.exports = function (controller) {
     // Show the api of @turnio
     controller.hears(
 
-      ['help', 'help (.*)', '(.*) help (.*)', 'ayuda', 'ayuda (.*)', '(.*) ayuda (.*)'], 
+      ['help', 'help (.*)', '(.*) help (.*)'], 
 
       'direct_message,direct_mention,mention', 
 
@@ -25,7 +25,7 @@ module.exports = function (controller) {
     // Add user to the queue
     controller.hears(
       
-      ['add','add (.*)', '(.*) add (.*)', 'añademe', 'añademe (.*)'],
+      ['add','add (.*)', '(.*) add (.*)'],
       
       'direct_message,direct_mention,mention', 
       
@@ -36,7 +36,7 @@ module.exports = function (controller) {
     // Delete user in the queue
     controller.hears(
       
-      ['del', 'del (.*)', '(.*) del (.*)', 'remove (.*)', 'borrame', 'borrame (.*)'],
+      ['del', 'del (.*)', '(.*) del (.*)'],
       
       'direct_message,direct_mention,mention', 
       
@@ -47,7 +47,7 @@ module.exports = function (controller) {
     // Delete all users in the queue
     controller.hears(
       
-      ['clean','clean (.*)','(.*) clean (.*)','limpia','limpia (.*)','(.*) limpia (.*)', 'vacia','vacia (.*)','(.*) vacia (.*)'],
+      ['clean','clean (.*)','(.*) clean (.*)'],
       
       'direct_message,direct_mention,mention', 
       
@@ -59,7 +59,7 @@ module.exports = function (controller) {
 
     function help(bot, message) {
        
-      const help = 'Hello '+ '<@'+ message.user +'>! Esta es mi API disponible: ' +'\n' + 
+      const help = 'Hello '+ '<@'+ message.user +'>! This is my API: ' +'\n' + 
             '> `add`  : Add a user to the queue\n' +
             '> `show` : Show the queue\n' +
             '> `del`  : Delete user of the queue\n' + 
@@ -77,7 +77,7 @@ module.exports = function (controller) {
         controller.storage.teams.get('queue', function(err, queue) { 
             
             if (!queue || !queue.users || queue.users.length == 0) {
-                bot.reply(message, 'No hay nadie en la cola en este momento, Mencioname y añade la palabra clave `add` para añadirte. :D');                
+                bot.reply(message, "There is no one in the queue at the moment, Name me and add the command `add` to add you.");                
             } else {
                 bot.reply(message, generateQueueList(queue.users));
             }
@@ -103,7 +103,7 @@ module.exports = function (controller) {
             var user = findUser(queue.users,message.user);
                                      
             if(user){                
-                bot.reply(message, '<'+ user.name +'> ya estas dado de alta en la cola, cuando sea tu turno te avisare.');
+                bot.reply(message, "<"+ user.name +">, You are in the queue already. When it's your turn, I'll let you know.");
                 bot.reply(message, generateQueueList(queue.users));
             } else {
                 
@@ -141,8 +141,8 @@ module.exports = function (controller) {
             }
             
             if (!queue || !queue.users || queue.users.length == 0 || findUser(queue.users,message.user) === undefined) {
-                bot.reply(message, 'La cola no existe o no estas en ella.\n' + 
-                                    'Para ver las personas en la cola, mencioname y añade la palabra clave `cola`.');                
+                bot.reply(message, "The queue doesn't exist or you aren't in it\n" +
+                                   "You can see the persons in the queue, Name me and add the command `show`");                
             } else {
                                      
                 queue.users = queue.users.filter(function(user){
@@ -161,7 +161,7 @@ module.exports = function (controller) {
 
                         if(queue.users && queue.users.length > 0){
 
-                            bot.reply(message, '<'+ queue.users[0].name +'> es tu turno! cuando termines eliminate de la cola mencionandome y añade la palabra clave `del`. Gracias');
+                            bot.reply(message, '<'+ queue.users[0].name +'> is your turn! When you finish, you should delete you from the queue. Name me and add the command `del`. Thank you.');
                         }
                     }
                 });                
@@ -178,7 +178,7 @@ module.exports = function (controller) {
             }
             
             if (!queue || !queue.users || queue.users.length == 0) {
-                bot.reply(message, 'No hay cola en este momento por lo tanto no se puede limpiar.');                
+                bot.reply(message, 'There is no one in the queue at the moment.');                
             } else {                
                 queue.users = [];                                          
                 controller.storage.teams.save(queue, function(err,saved) {
@@ -212,7 +212,7 @@ module.exports = function (controller) {
     // Generate list of users
     function generateQueueList(users) {
         
-        var text = 'La cola se componen de las siguientes personas: \n';
+        var text = 'The queue is composed of next persons: \n';
 
         users.forEach(function(user, i){                
             text = text + '> `' +  (i + 1) + 'º` ' +  user.name + '\n';            
