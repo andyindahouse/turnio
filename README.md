@@ -16,7 +16,11 @@ Turnio expose a API with main functionalities of a queue. You only need to menti
 * `clean` >   Delete all users in the queue 
 * `help`  >   Show the turnioAPI avalaible 
 
-### Install
+## Example
+
+![turnio messages](/turniomessages.PNG)
+
+## Install
 
 Clone this repository:
 

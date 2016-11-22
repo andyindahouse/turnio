@@ -16,7 +16,7 @@ module.exports = function (controller) {
       
       ['show','show (.*)','(.*) show (.*)'], 
       
-      'direct_message,direct_mention, mention', 
+      'direct_message,direct_mention,mention', 
       
       queue
 
@@ -77,7 +77,7 @@ module.exports = function (controller) {
         controller.storage.teams.get('queue', function(err, queue) { 
             
             if (!queue || !queue.users || queue.users.length == 0) {
-                bot.reply(message, "There is no one in the queue at the moment, Name me and add the command `add` to add you.");                
+                bot.reply(message, "There is no one in the queue at the moment, name me and add the command `add` to add you.");                
             } else {
                 bot.reply(message, generateQueueList(queue.users));
             }
