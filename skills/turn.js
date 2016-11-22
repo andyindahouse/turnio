@@ -14,7 +14,7 @@ module.exports = function (controller) {
     // Show users in the queue
     controller.hears(
       
-      ['cola','cola (.*)','(.*) cola (.*)','queue', 'lista','lista (.*)','(.*) lista (.*)'], 
+      ['show','show (.*)','(.*) show (.*)'], 
       
       'direct_message,direct_mention, mention', 
       
@@ -47,7 +47,7 @@ module.exports = function (controller) {
     // Delete all users in the queue
     controller.hears(
       
-      ['limpia','limpia (.*)','(.*) limpia (.*)', 'vacia','vacia (.*)','(.*) vacia (.*)'],
+      ['clean','clean (.*)','(.*) clean (.*)','limpia','limpia (.*)','(.*) limpia (.*)', 'vacia','vacia (.*)','(.*) vacia (.*)'],
       
       'direct_message,direct_mention,mention', 
       
@@ -59,13 +59,13 @@ module.exports = function (controller) {
 
     function help(bot, message) {
        
-      const help = 'Hola '+ '<@'+ message.user +'>! Esta es mi API disponible: ' +'\n' + 
-            '> `add`  : Te agrega a la cola de turno para desplegar\n' +
-            '> `cola` : Muestra la cola de usuarios\n' +
-            '> `del`  : Te elimina de la cola\n' + 
-            '> `limpia` : Limpia la cola de usuarios\n' +
-            '> `help` : Muestra la api disponible\n' + 
-            'Mencioname con cualquiera de estos comandos. Ex: @turnio help. ¡Pruebalo tu mismo!'; 
+      const help = 'Hello '+ '<@'+ message.user +'>! Esta es mi API disponible: ' +'\n' + 
+            '> `add`  : Add a user to the queue\n' +
+            '> `show` : Show the queue\n' +
+            '> `del`  : Delete user of the queue\n' + 
+            '> `clean`: Delete all users in the queue\n' +
+            '> `help` : Show the turnioAPI avalaible\n' + 
+            'Name me with any of this commands. Ex: Hey `@turnio` `show` me the queue. ¡Try it!'; 
 
        bot.reply(message, help);
 
