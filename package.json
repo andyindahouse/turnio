@@ -1,0 +1,29 @@
+{
+  "name": "turnio",
+  "version": "0.0.1",
+  "description": "a Slack bot to manage a queue of slack users in a channel.",
+  "main": "bot.js",
+  "dependencies": {
+    "botkit": "^0.4",    
+    "dashbot": "0.7.4",
+    "wordfilter": "^0.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andyindahouse/turnio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andyindahouse/turnio/issues"
+  },
+  "homepage": "https://github.com/andyindahouse/turnio",
+  "keywords": [
+    "bots",
+    "chatbots",
+    "slack",
+    "queue"
+  ],
+  "author": "andy.mendez.abello@gmail.com",
+  "license": "MIT"
+}
